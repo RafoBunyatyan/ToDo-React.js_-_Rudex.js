@@ -4,8 +4,8 @@ function TodoItem({ todo }) {
 			<label>
 				<input type='checkbox' />
 				{todo.text}
+				<button>X</button>
 			</label>
-			<button>X</button>
 		</div>
 	)
 }
