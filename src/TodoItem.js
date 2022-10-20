@@ -9,7 +9,9 @@ function TodoItem({ todo, onChange, onDelete }) {
 					})
 				}} />
 				{todo.text}
-				<button onClick={onDelete}>X</button>
+				<button onClick={() => {
+					onDelete(todo)
+				}}>X</button>
 			</label>
 		</div>
 	)

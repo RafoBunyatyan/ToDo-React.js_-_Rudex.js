@@ -36,7 +36,14 @@ function App() {
 					}
 				])
 			}} />
-			<TodoList todos={todos} />
+			<TodoList todos={todos}
+				onDelete={(todo) => {
+					setTodos(todos.filter((t) => t.id !== todo.id))
+				}}
+			// onChange={() => {
+
+			// }}
+			/>
 			<TodoFooter todos={todos} onClearCompleted={() => {
 				setTodos(todos.filter((todo) => !todo.isCompleted))
 			}} />
