@@ -1,6 +1,8 @@
+import './TodoItem.css'
+
 function TodoItem({ todo, onChange, onDelete }) {
 	return (
-		<div>
+		<div className="todoListItem">
 			<label>
 				<input type='checkbox' checked={todo.isCompleted} onChange={(e) => {
 					onChange({
@@ -9,9 +11,11 @@ function TodoItem({ todo, onChange, onDelete }) {
 					})
 				}} />
 				{todo.text}
-				<button onClick={() => {
-					onDelete(todo)
-				}}>X</button>
+				<button
+					className="todoListItemDelete"
+					onClick={() => {
+						onDelete(todo)
+					}}>X</button>
 			</label>
 		</div>
 	)

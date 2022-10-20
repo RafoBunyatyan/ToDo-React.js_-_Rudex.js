@@ -1,8 +1,8 @@
 import { useState } from 'react'
-import './App.css';
 import TodoFooter from './TodoFooter';
 import TodoForm from './TodoForm';
 import TodoList from './TodoList';
+import './App.css'
 
 function App() {
 
@@ -26,6 +26,10 @@ function App() {
 
 	return (
 		<div className="App">
+			<header>
+				<h1 className="todoAppTitle">todos</h1>
+			</header>
+
 			<TodoForm onAdd={(text) => {
 				setTodos([
 					...todos,
