@@ -37,7 +37,9 @@ function App() {
 				])
 			}} />
 			<TodoList todos={todos} />
-			<TodoFooter />
+			<TodoFooter todos={todos} onClearCompleted={() => {
+				setTodos(todos.filter((todo) => !todo.isCompleted))
+			}} />
 		</div>
 	);
 }
