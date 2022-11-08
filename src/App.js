@@ -1,4 +1,4 @@
-import { useReducer, useState } from 'react'
+import { useState } from 'react'
 import TodoFooter from './TodoFooter';
 import TodoForm from './TodoForm';
 import TodoList from './TodoList';
@@ -17,8 +17,25 @@ function reducer(state, action) {
 	} else if (action.type === 'delete') {
 		return state.filter((t) => t.id !== action.payload.id)
 	} else if (action.type === 'clear') {
-		return state.filter((todo) => !action.payload.isCompleted)
+		return state.filter((todo) => !todo.isCompleted)
+	} else if (action.type === 'change') {
+		return (state.map((todo) => {
+			if (todo.id === action.id) {
+				return action.id
+			}
+			return todo
+		})
+		)
 	}
+}
+
+function useReducer(reducer, initialState) {
+	const [state, setState] = useState(initialState)
+
+	return [state, (action) => {
+		const newState = reducer(state, action)
+		setState(newState)
+	}]
 }
 
 function App() {
@@ -74,6 +91,12 @@ function App() {
 					// setTodos(todos.filter((t) => t.id !== todo.id))
 				}}
 				onChange={(newTodo) => {
+					dispatch({
+						type: 'change',
+						payload: {
+							id: newTodo.id
+						}
+					})
 					// setTodos(todos.map((todo) => {
 					// 	if (todo.id === newTodo.id) {
 					// 		return newTodo
