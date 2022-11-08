@@ -16,6 +16,8 @@ function reducer(state, action) {
 		]
 	} else if (action.type === 'delete') {
 		return state.filter((t) => t.id !== action.payload.id)
+	} else if (action.type === 'clear') {
+		return state.filter((todo) => !action.payload.isCompleted)
 	}
 }
 
@@ -80,10 +82,13 @@ function App() {
 					// }))
 				}}
 			/>
-			<TodoFooter todos={todos} onClearCompleted={() => {
-				// dispatch({
-
-				// })
+			<TodoFooter todos={todos} onClearCompleted={(todo) => {
+				dispatch({
+					type: 'clear',
+					payload: {
+						id: todo.id
+					}
+				})
 				// setTodos(todos.filter((todo) => !todo.isCompleted))
 			}} />
 		</div>
