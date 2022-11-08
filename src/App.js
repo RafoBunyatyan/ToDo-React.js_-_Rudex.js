@@ -1,12 +1,27 @@
-import { useState } from 'react'
+import { useReducer, useState } from 'react'
 import TodoFooter from './TodoFooter';
 import TodoForm from './TodoForm';
 import TodoList from './TodoList';
 import './App.css'
 
+function reducer(state, action) {
+	if (action.type === 'add') {
+		return [
+			...state,
+			{
+				id: Math.random(),
+				text: action.payload.text,
+				isCompleted: false,
+			}
+		]
+	} else if (action.type === 'delete') {
+		return state.filter((t) => t.id !== action.payload.id)
+	}
+}
+
 function App() {
 
-	const [todos, setTodos] = useState([
+	const [todos, dispatch] = useReducer(reducer, [
 		{
 			id: Math.random(),
 			text: 'Learn JS',
@@ -31,30 +46,45 @@ function App() {
 			</header>
 
 			<TodoForm onAdd={(text) => {
-				setTodos([
-					...todos,
-					{
-						id: Math.random(),
+				dispatch({
+					type: 'add',
+					payload: {
 						text: text,
-						isCompleted: false,
 					}
-				])
+				})
+				// setTodos([
+				// 	...todos,
+				// 	{
+				// 		id: Math.random(),
+				// 		text: text,
+				// 		isCompleted: false,
+				// 	}
+				// ])
 			}} />
 			<TodoList todos={todos}
 				onDelete={(todo) => {
-					setTodos(todos.filter((t) => t.id !== todo.id))
+					dispatch({
+						type: 'delete',
+						payload: {
+							id: todo.id
+						}
+					})
+					// setTodos(todos.filter((t) => t.id !== todo.id))
 				}}
 				onChange={(newTodo) => {
-					setTodos(todos.map((todo) => {
-						if (todo.id === newTodo.id) {
-							return newTodo
-						}
-						return todo
-					}))
+					// setTodos(todos.map((todo) => {
+					// 	if (todo.id === newTodo.id) {
+					// 		return newTodo
+					// 	}
+					// 	return todo
+					// }))
 				}}
 			/>
 			<TodoFooter todos={todos} onClearCompleted={() => {
-				setTodos(todos.filter((todo) => !todo.isCompleted))
+				// dispatch({
+
+				// })
+				// setTodos(todos.filter((todo) => !todo.isCompleted))
 			}} />
 		</div>
 	);
