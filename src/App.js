@@ -1,7 +1,7 @@
 import { useState } from 'react'
-import TodoFooter from './TodoFooter';
-import TodoForm from './TodoForm';
-import TodoList from './TodoList';
+import TodoFooter from './components/TodoFooter';
+import TodoForm from './components/TodoForm';
+import TodoList from './components/TodoList';
 import './App.css'
 
 function reducer(state, action) {
