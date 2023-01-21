@@ -1,4 +1,4 @@
-import './TodoItem.css'
+import '../assets/styles/TodoItem.css'
 
 function TodoItem({ todo, onChange, onDelete }) {
 	return (

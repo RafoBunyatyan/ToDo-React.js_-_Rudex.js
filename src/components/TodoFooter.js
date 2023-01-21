@@ -1,4 +1,4 @@
-import './TodoFooter.css'
+import '../assets/styles/TodoItem.css'
 
 function TodoFooter({ todos, onClearCompleted }) {
 

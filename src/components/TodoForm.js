@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import './TodoForm.css'
+import '../assets/styles/TodoForm.css'
 
 function TodoForm({ onAdd }) {
 
